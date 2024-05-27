@@ -16,12 +16,17 @@ class Job extends Model
         'description',
         'salary',
         'publication_date',
-        'state'
+        'state',
+        'location',
     ];
 
     public function scopeSearch($query, $serach)
     {
         return $query->whereRaw('LOWER(title) like ?', ['%' . strtolower($serach) . '%']);
+    }
+    public function scopeLocation($query, $location)
+    {
+        return $query->whereRaw('LOWER(location) like ?', ['%' . strtolower($location) . '%']);
     }
     public function employer()
     {

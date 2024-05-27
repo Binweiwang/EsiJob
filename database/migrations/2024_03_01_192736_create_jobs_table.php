@@ -19,6 +19,9 @@ return new class extends Migration {
             $table->string('salary');
             $table->timestamp('publication_date')->nullable();
             $table->string('state');
+            $table->string('location');
+            $table->boolean('is_deleted')->default(false);
+            $table->string('workday');
             $table->timestamps();
         });
     }

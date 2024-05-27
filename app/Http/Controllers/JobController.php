@@ -9,8 +9,39 @@ class JobController extends Controller
 {
     public function index(Request $request)
     {
-        $jobs = Job::search($request->search)->paginate(10);
-        return view('home', compact('jobs'));
+        $query = Job::query();
+
+        // Aplicar el filtro de búsqueda si está presente
+        if ($request->filled('search')) {
+            $query->search($request->search);
+        }
+        if ($request->filled('workday')) {
+            $workdays = $request->workday;
+            $query->whereIn('workday', $workdays);
+        }
+
+        // Aplicar el filtro de ubicación si está presente
+        if ($request->filled('location')) {
+            $query->location($request->location);
+        }
+
+        // Obtener los trabajos paginados
+        $jobs = $query->paginate(15);
+
+        // Obtener los empleadores únicos de los trabajos filtrados
+        $employers = $jobs->pluck('employer_id')->unique();
+
+        $provinces = [
+            'Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Zaragoza', 'Málaga', 'Murcia', 'Palma', 'Las Palmas',
+            'Bilbao', 'Alicante', 'Córdoba', 'Valladolid', 'Vigo', 'Gijón', 'Hospitalet', 'Vitoria', 'A Coruña',
+            'Granada', 'Elche', 'Oviedo', 'Badalona', 'Cartagena', 'Terrassa', 'Jerez', 'Sabadell', 'Móstoles',
+            'Santa Cruz de Tenerife', 'Pamplona', 'Almería', 'San Sebastián', 'Burgos', 'Santander', 'Castellón',
+            'Alcorcón', 'Albacete', 'Getafe', 'Salamanca', 'Logroño', 'San Cristóbal de La Laguna', 'Huelva',
+            'Marbella', 'Badajoz', 'Lleida', 'Tarragona', 'León', 'Cádiz', 'Jaén'
+        ];
+        sort($provinces);
+
+        return view('home', compact('jobs', 'employers', 'provinces'));
     }
 
     public function show(Job $job)

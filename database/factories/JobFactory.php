@@ -18,13 +18,22 @@ class JobFactory extends Factory
     {
         return [
             //
-            'employer_id'=>fake()->randomDigit(),
-            'title'=>fake()->sentence(),
-            'requirements'=>fake()->sentence(),
-            'description'=>fake()->sentence(),
-            'salary'=>fake()->randomDigit(),
-            'publication_date'=>now(),
-            'state'=>fake()->randomElement(['active','inactive']),
+            'employer_id' => fake()->randomDigit(),
+            'title' => fake()->sentence(),
+            'requirements' => fake()->sentence(),
+            'description' => fake()->sentence(),
+            'salary' => fake()->randomDigit(),
+            'publication_date' => now(),
+            'state' => fake()->randomElement(['active', 'inactive']),
+            'location' => fake()->randomElement([
+                'Madrid', 'Barcelona', 'Valencia', 'Sevilla', 'Zaragoza', 'Málaga', 'Murcia', 'Palma', 'Las Palmas',
+                'Bilbao', 'Alicante', 'Córdoba', 'Valladolid', 'Vigo', 'Gijón', 'Hospitalet', 'Vitoria', 'A Coruña',
+                'Granada', 'Elche', 'Oviedo', 'Badalona', 'Cartagena', 'Terrassa', 'Jerez', 'Sabadell', 'Móstoles',
+                'Santa Cruz de Tenerife', 'Pamplona', 'Almería', 'San Sebastián', 'Burgos', 'Santander', 'Castellón',
+                'Alcorcón', 'Albacete', 'Getafe', 'Salamanca', 'Logroño', 'San Cristóbal de La Laguna', 'Huelva',
+                'Marbella', 'Badajoz', 'Lleida', 'Tarragona', 'León', 'Cádiz', 'Jaén'
+            ]),
+            'workday' => fake()->randomElement(['full-time', 'part-time', 'remote']),
         ];
     }
 }
