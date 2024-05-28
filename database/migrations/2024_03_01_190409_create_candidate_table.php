@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('city');
             $table->string('state');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

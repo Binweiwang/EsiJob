@@ -57,6 +57,8 @@
                     <p class="text-sm text-gray-700 mt-2">Requisitos: <span class="text-gray-600">{{ $job->requirements }}</span></p>
                     <p class="text-sm text-gray-700 mt-2">Salario: <span class="text-gray-600">{{ $job->salary }}</span></p>
                     <p class="text-sm text-gray-700 mt-2">Ubicación: <span class="text-gray-600">{{ $job->location }}</span></p>
+                    <p class="text-sm text-gray-700 mt-2">Empresa: <span class="text-gray-600">{{ $job->employer->name_company }}</span></p>
+                    <p class="text-sm text-gray-700 mt-2">Tiempo: <span class="text-gray-600">{{ $job->workday }}</span></p>
                 </div>
             </div>
         </li>
