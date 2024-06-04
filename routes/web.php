@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Stripe\StripeController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -11,12 +12,17 @@ Route::redirect('/', '/home');
 //JobController
 Route::get('/home', [JobController::class,'index'])->name('home');
 Route::middleware('auth')->group(function(){
-    Route::post('/reduce-credits', [JobController::class, 'reduceCredits'])->middleware('auth');
+    Route::post('/reduce-credits', [JobController::class, 'reduceCredits'])->name('reduce.credits');
     Route::get('/mis-ofertas', [JobController::class, 'userJobs'])->name('user.jobs');
     Route::post('/jobs', [JobController::class, 'store'])->name('jobs.store');
     Route::get('/jobs', [JobController::class, 'create'])->name('jobs.create');
     Route::get('/jobs/{job}', [JobController::class, 'edit'])->name('jobs.edit');
     Route::put('/update/{job}', [JobController::class, 'update'])->name('jobs.update');
+    Route::post('/credits', [JobController::class,'rechargeCredits'])->name('credits.recharge');
+    Route::get('/credits',function (){
+        return view('jobs.recarga');
+    })->name('credits');
+
 });
 
 //ProfileController
@@ -36,3 +42,18 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 require __DIR__.'/auth.php';
+
+//checkout Stripe
+Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
+Route::get('/success', [StripeController::class, 'success'])->name('success');
+Route::get('/index', [StripeController::class, 'index'])->name('index');
+
+
+//contact
+Route::get('/contact', function () {
+    return view('errors.contact');
+})->name('contact');
+
+Route::post('/contact', function () {
+    return redirect()->route('contact')->with('success', '¡Hemos recibido tu mensaje!');
+})->name('contact');

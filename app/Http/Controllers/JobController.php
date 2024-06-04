@@ -168,7 +168,18 @@ class JobController extends Controller
         // Redirigir con un mensaje de éxito
         return redirect()->route('home');
     }
+    public function rechargeCredits(Request $request)
+    {
+        $request->validate([
+            'amount' => 'required|integer|in:5,10,20,50,100,200,500',
+        ]);
 
+        $user = Auth::user();
+        $user->credits += $request->amount;
+        $user->save();
+
+        return redirect()->route('credits.recharge')->with('success', '¡Recarga exitosa!');
+    }
     public function destroy(Job $job)
     {
         // 删除工作

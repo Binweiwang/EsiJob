@@ -21,6 +21,15 @@
                     <x-nav-link :href="route('user.jobs')" :active="request()->routeIs('jobs.index')" class="font-semibold">
                         {{ __('Mis Ofertas') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('checkout')" :active="request()->routeIs('checkout')" class="font-semibold">
+                        {{ __('Checkout') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')" class="font-semibold">
+                        {{ __('Contactar') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('credits')" :active="request()->routeIs('credits')" class="font-semibold">
+                        {{ __('Recargar') }}
+                    </x-nav-link>
                 </div>
             </div>
 
