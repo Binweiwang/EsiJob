@@ -24,25 +24,3 @@
         document.getElementById('filter-form').submit();
     }
 </script>
-
-
-<!--<div class="p-6 bg-white">-->
-<!--    <h2 class="text-2xl font-semibold text-gray-900 border-b border-gray-300">Ubicación</h2>-->
-<!--    <div class="flex flex-col mt-4">-->
-<!--        <div class="flex items-->
-<!--                            -center gap-x-2">-->
-<!--            <input type="checkbox" id="lima" name="lima" value="lima" class="rounded">-->
-<!--            <label for="lima" class="ml-3">Lima</label>-->
-<!--        </div>-->
-<!--        <div class="flex items-->
-<!--                            -center gap-x-2">-->
-<!--            <input type="checkbox" id="arequipa" name="arequipa" value="arequipa" class="rounded">-->
-<!--            <label for="arequipa" class="ml-3">Arequipa</label>-->
-<!--        </div>-->
-<!--        <div class="flex items-->
-<!--                            -center gap-x-2">-->
-<!--            <input type="checkbox" id="cusco" name="cusco" value="cusco" class="rounded">-->
-<!--            <label for="cusco" class="ml-3">Cusco</label>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->

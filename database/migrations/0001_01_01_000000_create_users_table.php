@@ -14,10 +14,20 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('last_name')->nullable();  // Add last name field
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('avatar_url')->nullable();
+            $table->string('avatar_url')->nullable()->default('https://ui-avatars.com/api/?background=random');
+            $table->string('name_company')->nullable();  // Add company name field
+            $table->string('phone')->nullable();  // Add phone field
+            $table->string('description')->nullable();  // Add description field
+            $table->string('address')->nullable();  // Add address field
+            $table->string('city')->nullable();  // Add city field
+            $table->string('state')->nullable();  // Add state field
+            $table->boolean('is_active')->default(true);
+            $table->string('role')->default('user');
+            $table->integer('credits')->default(3);  // Add credit field
             $table->rememberToken();
             $table->timestamps();
         });

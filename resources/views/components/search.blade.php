@@ -3,7 +3,7 @@
         <div class="flex items-center bg-white-500 rounded-full shadow-lg w-full">
             <div class="flex items-center px-4 py-2 rounded-l-full bg-white flex-grow">
                 <i class="fas fa-search text-gray-400 mr-2"></i>
-                <input type="text" name="search" class="w-full border-none focus:outline-none focus:ring-0 text-gray-800" placeholder="Título del trabajo o palabra clave">
+                <input type="text" name="search" class="w-full border-none focus:outline-none focus:ring-0 text-gray-800" placeholder="Título del trabajo o palabra clave" autocomplete="off">
             </div>
             <div class="flex items-center px-4 py-2 bg-white flex-grow">
                 <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>

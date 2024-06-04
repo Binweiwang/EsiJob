@@ -41,11 +41,16 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        // Verificar si el usuario está activo
+        $credentials = $this->only('email', 'password');
+        $credentials['is_active'] = true; // Agrega esta línea
+
+        if (! Auth::attempt($credentials, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
+                'is_active' => 'El usuario no está activo.',
             ]);
         }
 

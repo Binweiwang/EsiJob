@@ -19,7 +19,7 @@ class JobFactory extends Factory
     {
         return [
             //
-            'employer_id' => fake()->numberBetween(1,10),
+            'user_id' => fake()->numberBetween(1,10),
             'title' => fake()->sentence(),
             'requirements' => fake()->sentence(),
             'description' => fake()->sentence(),

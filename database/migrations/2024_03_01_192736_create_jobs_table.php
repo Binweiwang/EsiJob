@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employer_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('requirements');
             $table->string('description');
@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('state');
             $table->string('location');
             $table->boolean('is_active')->default(true);
+            $table->string('company_logo')->nullable();
             $table->string('workday');
             $table->timestamps();
-
-            $table->foreign('employer_id')->references('id')->on('employers');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

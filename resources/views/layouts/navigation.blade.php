@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="font-semibold">
                         {{ __('Inicio') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('jobs.create')" :active="request()->routeIs('jobs.create')" class="font-semibold">
+                        {{ __('Publicar') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('user.jobs')" :active="request()->routeIs('jobs.index')" class="font-semibold">
+                        {{ __('Mis Ofertas') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -31,7 +37,11 @@
                     <x-slot name="trigger">
                         <button
                             class="inline-flex bg-sky-100 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <img src="{{ asset('storage/' . Auth::user()->avatar_url) }}" alt="{{ Auth::user()->name }}" class="h-14 w-14 rounded-full object-cover">
+                            @php
+                            $avatarUrl = Storage::exists('public/' . Auth::user()->avatar_url) ? 'storage/' . Auth::user()->avatar_url : 'storage/avatars/default-avatar.jpg';
+                            @endphp
+
+                            <img src="{{ asset($avatarUrl) }}" alt="{{ Auth::user()->name }}" class="h-14 w-14 rounded-full object-cover">
                             <div class="ms-2"> <!-- Adjusted margin for better spacing -->
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">

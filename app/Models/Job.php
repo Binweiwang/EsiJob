@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     use HasFactory;
+
     protected $table = 'jobs';
+
     protected $fillable = [
-        'employer_id',
+        'user_id',
         'title',
         'requirements',
         'description',
@@ -18,18 +20,22 @@ class Job extends Model
         'publication_date',
         'state',
         'location',
+        'workday',
+        'company_logo',
     ];
 
-    public function scopeSearch($query, $serach)
+    public function scopeSearch($query, $search)
     {
-        return $query->whereRaw('LOWER(title) like ?', ['%' . strtolower($serach) . '%']);
+        return $query->whereRaw('LOWER(title) like ?', ['%' . strtolower($search) . '%']);
     }
+
     public function scopeLocation($query, $location)
     {
         return $query->whereRaw('LOWER(location) like ?', ['%' . strtolower($location) . '%']);
     }
-    public function employer()
+
+    public function user()
     {
-        return $this->belongsTo(Employer::class);
+        return $this->belongsTo(User::class);
     }
 }
