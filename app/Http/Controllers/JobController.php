@@ -7,8 +7,13 @@ use App\Models\SearchHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Controlador para la gestión de ofertas de trabajo
+
+ */
 class JobController extends Controller
 {
+
     public function index(Request $request)
     {
         $query = Job::query();
@@ -47,6 +52,10 @@ class JobController extends Controller
         return view('home', compact('jobs', 'employers', 'provinces', 'isLoggedIn', 'credits'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse Reducir los créditos del usuario actual
+     */
     public function reduceCredits(Request $request)
     {
         $user = Auth::user();
@@ -57,11 +66,10 @@ class JobController extends Controller
         }
         return response()->json(['success' => false, 'message' => 'No tienes suficientes créditos.']);
     }
-    public function show(Job $job)
-    {
-        // 返回一个特定的工作
-    }
 
+    /**
+     * @return la vista de creación de trabajos
+     */
     public function create()
     {
         $provinces = [
@@ -77,6 +85,10 @@ class JobController extends Controller
         // 显示创建工作的表单
     }
 
+    /**
+     * @param Request $request
+     * @return redirige a la página de inicio con un estado de éxito
+     */
     public function store(Request $request)
     {
         // Validar los datos del formulario
@@ -114,9 +126,13 @@ class JobController extends Controller
         // Redirigir con un mensaje de éxito
         return redirect()->route('home')->with('status', 'job-posted');
     }
+
+    /**
+     * @return los trabajos del usuario actual
+     */
     public function userJobs()
     {
-        $jobs = Auth::user()->jobs()->paginate(9); // Assuming a User has many Jobs relationship
+        $jobs = Auth::user()->jobs()->paginate(9); // Obtener los trabajos del usuario actual
         return view('jobs.user-jobs', compact('jobs'));
     }
     public function edit(Job $job)
@@ -134,6 +150,11 @@ class JobController extends Controller
         return view('jobs.form', compact('job', 'provinces'));
     }
 
+    /**
+     * @param Request $request
+     * @param Job $job
+     * @return redigiir a la página de inicio
+     */
     public function update(Request $request, Job $job)
     {
         // Validar los datos del formulario
@@ -164,10 +185,14 @@ class JobController extends Controller
             'workday' => $request->input('workday'),
             'company_logo' => $logoPath,
         ]);
-
-        // Redirigir con un mensaje de éxito
+        // redirigir a la página de inicio
         return redirect()->route('home');
     }
+
+    /**
+     * @param Request $request
+     * @return redirigir a la página de recarga de créditos
+     */
     public function rechargeCredits(Request $request)
     {
         $request->validate([
@@ -180,8 +205,14 @@ class JobController extends Controller
 
         return redirect()->route('credits.recharge')->with('success', '¡Recarga exitosa!');
     }
+
+    /**
+     * @param Job $job el trabajo a eliminar
+     * @return redirigir a la página de user jobs
+     */
     public function destroy(Job $job)
     {
-        // 删除工作
+        $job->delete();
+        return redirect()->route('user.jobs');
     }
 }

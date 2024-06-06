@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Carrito;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

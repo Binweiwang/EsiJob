@@ -44,9 +44,15 @@
                                     @endif
                                 </p>
                             </div>
+                            <form action="{{ route('jobs.destroy', $job) }}" method="POST" class="flex items-center justify-center mb-4">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold text-center rounded-lg py-2 px-4">
+                                    {{ __('Eliminar') }}
+                                </button>
+                            </form>
                         </div>
                     </a>
-
                     @empty
                     <div class="col-span-1 sm:col-span-2 lg:col-span-3">
                         <p class="text-sm text-gray-600">{{ __('No has publicado ninguna oferta de trabajo aún.') }}</p>

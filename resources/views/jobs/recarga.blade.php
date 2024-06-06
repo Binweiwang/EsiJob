@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 leading-tight">
-            {{ __('Recargar Créditos') }}
+            {{ __('Añadir a Carrito') }}
         </h2>
     </x-slot>
 
@@ -10,10 +10,10 @@
             <section>
                 <header class="border-b border-gray-200 pb-4">
                     <h2 class="text-xl font-semibold text-gray-900">
-                        {{ __('Opciones de Recarga') }}
+                        {{ __('Opciones de Añadir a Carrito') }}
                     </h2>
                     <p class="mt-1 text-sm text-gray-600">
-                        {{ __("Selecciona una opción para recargar tus créditos.") }}
+                        {{ __("Selecciona una opción para añadir tus créditos al carrito.") }}
                     </p>
                 </header>
 
@@ -32,7 +32,7 @@
                     </div>
                     <div class="mt-6 text-center">
                         <button type="submit" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            {{ __('Recargar Créditos') }}
+                            {{ __('Añadir a Carrito') }}
                         </button>
                     </div>
                 </form>

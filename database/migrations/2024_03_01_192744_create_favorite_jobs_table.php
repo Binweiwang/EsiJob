@@ -12,11 +12,11 @@ return new class extends Migration {
     {
         Schema::create('favorite_jobs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('candidate_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('job_id');
             $table->timestamps();
 
-            $table->foreign('candidate_id')->references('id')->on('candidate');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('job_id')->references('id')->on('jobs');
         });
     }

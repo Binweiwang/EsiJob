@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
+                        <img src="{{ asset('storage/logo/logo.png') }}" class="block h-9 w-auto" alt="ESijob Logo"/>
                     </a>
                 </div>
 
@@ -15,31 +15,34 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="font-semibold">
                         {{ __('Inicio') }}
                     </x-nav-link>
+                    @if(Auth::check())
                     <x-nav-link :href="route('jobs.create')" :active="request()->routeIs('jobs.create')" class="font-semibold">
                         {{ __('Publicar') }}
                     </x-nav-link>
                     <x-nav-link :href="route('user.jobs')" :active="request()->routeIs('jobs.index')" class="font-semibold">
                         {{ __('Mis Ofertas') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('checkout')" :active="request()->routeIs('checkout')" class="font-semibold">
-                        {{ __('Checkout') }}
+                    <x-nav-link :href="route('recargar')" :active="request()->routeIs('credits')" class="font-semibold">
+                        {{ __('Recargar') }}
                     </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')" class="font-semibold">
                         {{ __('Contactar') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('credits')" :active="request()->routeIs('credits')" class="font-semibold">
-                        {{ __('Recargar') }}
                     </x-nav-link>
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
-            <div class="hidden  sm:flex sm:items-center sm:ms-6">
+            <!-- Settings and Cart -->
+            <div class="hidden sm:flex sm:items-center sm:ms-6 space-x-4">
+                <!-- Cart Icon -->
+                <a href="{{ route('carrito.index') }}" class="text-gray-500 hover:text-gray-700 relative">
+                    <i class="fas fa-shopping-cart fa-2x text-md"></i>
+                </a>
                 @if(Auth::guest())
                 <div class="ms-4">
                     <a href="{{ route('login') }}" class="text-sm text-gray-500 hover:text-gray-800">Login</a>
                     <a href="{{ route('register') }}"
-                       class="ms-4 text-sm text-indigo-600">Registrar-></a>
+                       class="ms-4 text-sm text-indigo-600">Registrar</a>
                 </div>
                 @else
                 <x-dropdown align="right" width="48">
@@ -102,7 +105,25 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('home') }}
+                {{ __('Inicio') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('jobs.create')" :active="request()->routeIs('jobs.create')">
+                {{ __('Publicar') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.jobs')" :active="request()->routeIs('jobs.index')">
+                {{ __('Mis Ofertas') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('checkout')" :active="request()->routeIs('checkout')">
+                {{ __('Checkout') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
+                {{ __('Contactar') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('credits')" :active="request()->routeIs('credits')">
+                {{ __('Recargar') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('carrito.index')" :active="request()->routeIs('cart.index')">
+                {{ __('Carrito') }}
             </x-responsive-nav-link>
         </div>
 
@@ -126,7 +147,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('Perfil') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -135,7 +156,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                                            onclick="event.preventDefault();
                                 this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Cerrar sesión') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
